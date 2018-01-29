@@ -10,7 +10,8 @@ node() {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("manee2k6/fidelitee:${env.BUILD_NUMBER}")
+        //app = docker.build("manee2k6/fidelitee:${env.BUILD_NUMBER}")
+        sh 'docker build --tag mani .'
         
     }
 
@@ -30,7 +31,7 @@ node() {
          * Pushing multiple tags is cheap, as all the layers are reused. */
         withDockerRegistry([credentialsId: 'DockerID', url: 'https://hub.docker.com/']) {
            //app.push("${env.BUILD_NUMBER}") 
-            app.push("manee2k6/fidelitee:${env.BUILD_NUMBER}")
+            //app.push("manee2k6/fidelitee:${env.BUILD_NUMBER}")
          }
     }
 }
